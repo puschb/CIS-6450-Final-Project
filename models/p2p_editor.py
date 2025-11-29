@@ -8,12 +8,16 @@ from diffusers import StableDiffusionPipeline
 from utils.utils import load_512, latent2image, txt_draw
 from PIL import Image
 import numpy as np
+import torch
+import pickle
 
 class P2PEditor:
-    def __init__(self, method_list, device, num_ddim_steps=50) -> None:
+    def __init__(self, method_list, device, num_ddim_steps=50, distilled_checkpoint=None) -> None:
         self.device=device
         self.method_list=method_list
         self.num_ddim_steps=num_ddim_steps
+        self.distilled_checkpoint=distilled_checkpoint
+
         # init model
         self.scheduler = DDIMSchedulerDev(beta_start=0.00085,
                                     beta_end=0.012,
@@ -24,7 +28,56 @@ class P2PEditor:
             "CompVis/stable-diffusion-v1-4", scheduler=self.scheduler).to(device)
         self.ldm_stable.scheduler.set_timesteps(self.num_ddim_steps)
 
-        
+        # Load distilled checkpoint if provided
+        if distilled_checkpoint is not None:
+            print(f"Loading distilled checkpoint from {distilled_checkpoint}")
+            self._load_distilled_unet(distilled_checkpoint)
+
+    def _load_distilled_unet(self, checkpoint_path):
+        """Load distilled U-Net weights from SFD checkpoint"""
+        print(f"Loading distilled U-Net from: {checkpoint_path}")
+
+        # Add SFD path for imports
+        import sys
+        import os
+        sfd_path = os.path.join(os.path.dirname(__file__), '../diff-sampler/sfd-main')
+        if sfd_path not in sys.path:
+            sys.path.insert(0, sfd_path)
+
+        # Import dnnlib after adding to path
+        import dnnlib.util
+
+        # Load checkpoint using SFD's own loading method
+        print("Loading checkpoint...")
+        with dnnlib.util.open_url(checkpoint_path) as f:
+            net = pickle.load(f)['model']
+
+        print(f"Loaded model type: {type(net)}")
+
+        # Navigate to the U-Net state dict
+        # The model structure is: CFGPrecond -> .model (LatentDiffusion) -> .model.diffusion_model (UNet)
+        if hasattr(net, 'model'):
+            ldm_model = net.model
+            print(f"Found .model, type: {type(ldm_model)}")
+            if hasattr(ldm_model, 'model') and hasattr(ldm_model.model, 'diffusion_model'):
+                print("Extracting U-Net from net.model.model.diffusion_model")
+                unet_state_dict = ldm_model.model.diffusion_model.state_dict()
+            elif hasattr(ldm_model, 'diffusion_model'):
+                print("Extracting U-Net from net.model.diffusion_model")
+                unet_state_dict = ldm_model.diffusion_model.state_dict()
+            else:
+                raise RuntimeError(f"Cannot find diffusion_model. LDM model has attributes: {dir(ldm_model)}")
+        else:
+            raise RuntimeError(f"Cannot find .model attribute. Model has attributes: {dir(net)}")
+
+        # Load into the pipeline's U-Net
+        missing, unexpected = self.ldm_stable.unet.load_state_dict(unet_state_dict, strict=False)
+        print("Distilled U-Net loaded successfully")
+        if len(missing) > 0:
+            print(f"Warning: {len(missing)} keys missing in checkpoint")
+        if len(unexpected) > 0:
+            print(f"Warning: {len(unexpected)} unexpected keys in checkpoint")
+
     def __call__(self, 
                 edit_method,
                 image_path,

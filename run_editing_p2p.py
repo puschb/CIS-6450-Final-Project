@@ -86,15 +86,25 @@ if __name__ == "__main__":
     parser.add_argument('--output_path', type=str, default="output") # the editing category that needed to run
     parser.add_argument('--edit_category_list', nargs = '+', type=str, default=["0","1","2","3","4","5","6","7","8","9"]) # the editing category that needed to run
     parser.add_argument('--edit_method_list', nargs = '+', type=str, default=["ddim+p2p"]) # the editing methods that needed to run
+    parser.add_argument('--distilled_checkpoint', type=str, default=None) # path to distilled model checkpoint
+    parser.add_argument('--num_ddim_steps', type=int, default=50) # number of DDIM steps
     args = parser.parse_args()
-    
+
     rerun_exist_images=args.rerun_exist_images
     data_path=args.data_path
     output_path=args.output_path
     edit_category_list=args.edit_category_list
     edit_method_list=args.edit_method_list
-    
-    p2p_editor=P2PEditor(edit_method_list, torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu'),num_ddim_steps=50)
+    distilled_checkpoint=args.distilled_checkpoint
+    num_ddim_steps=args.num_ddim_steps
+
+    # Prefix output folders with 'distilled-' if using distilled model
+    if distilled_checkpoint is not None:
+        for key in image_save_paths:
+            image_save_paths[key] = "distilled-" + image_save_paths[key]
+
+    p2p_editor=P2PEditor(edit_method_list, torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu'),
+                         num_ddim_steps=num_ddim_steps, distilled_checkpoint=distilled_checkpoint)
     
     with open(f"{data_path}/mapping_file.json", "r") as f:
         editing_instruction = json.load(f)

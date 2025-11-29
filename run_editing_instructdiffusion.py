@@ -143,7 +143,7 @@ if __name__ == "__main__":
     parser.add_argument('--output_path', type=str, default="output") # the editing category that needed to run
     parser.add_argument('--edit_category_list', nargs = '+', type=str, default=["0","1","2","3","4","5","6","7","8","9"]) # the editing category that needed to run
     parser.add_argument('--edit_method_list', nargs = '+', type=str, default=["instruct-diffusion"]) # the editing methods that needed to run
-    parser.add_argument('--checkpoint', type=str, require=True, default="data/checkpoints/v1-5-pruned-emaonly-adaption.ckpt") # the editing methods that needed to run
+    parser.add_argument('--checkpoint', type=str, required=True, default="data/checkpoints/v1-5-pruned-emaonly-adaption.ckpt") # the editing methods that needed to run
     args = parser.parse_args()
     
     rerun_exist_images=args.rerun_exist_images
@@ -175,6 +175,11 @@ if __name__ == "__main__":
         editing_instruction = item["editing_instruction"]
         blended_word = item["blended_word"].split(" ") if item["blended_word"] != "" else []
         mask = Image.fromarray(np.uint8(mask_decode(item["mask"])[:,:,np.newaxis].repeat(3,2))).convert("L")
+
+        # Skip if source image doesn't exist
+        if not os.path.exists(image_path):
+            print(f"Warning: Source image not found, skipping: {image_path}")
+            continue
 
         for edit_method in edit_method_list:
             present_image_save_path=image_path.replace(data_path, os.path.join(output_path,image_save_paths[edit_method]))

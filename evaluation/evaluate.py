@@ -4,7 +4,7 @@ import os
 import numpy as np
 from PIL import Image
 import csv
-from evaluation.matrics_calculator import MetricsCalculator
+from matrics_calculator import MetricsCalculator
 
 def mask_decode(encoded_mask,image_shape=[512,512]):
     length=image_shape[0]*image_shape[1]
@@ -256,17 +256,28 @@ if __name__=="__main__":
         editing_prompt = item["editing_prompt"].replace("[", "").replace("]", "")
         
         mask=mask[:,:,np.newaxis].repeat([3],axis=2)
-        
+
         src_image_path=os.path.join(src_image_folder, base_image_path)
+
+        # Skip if source image doesn't exist
+        if not os.path.exists(src_image_path):
+            print(f"Warning: Source image not found, skipping: {src_image_path}")
+            continue
+
         src_image = Image.open(src_image_path)
-        
-        
+
+
         evaluation_result=[key]
         
         for tgt_image_folder_key,tgt_image_folder in tgt_image_folders.items():
             tgt_image_path=os.path.join(tgt_image_folder, base_image_path)
             print(f"evluating method: {tgt_image_folder_key}")
-            
+
+            # Skip if target image doesn't exist
+            if not os.path.exists(tgt_image_path):
+                print(f"Warning: Target image not found, skipping: {tgt_image_path}")
+                continue
+
             tgt_image = Image.open(tgt_image_path)
             if tgt_image.size[0] != tgt_image.size[1]:
                 # to evaluate editing

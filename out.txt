@@ -1,0 +1,1803 @@
+LatentDiffusion: Running in eps-prediction mode
+DiffusionWrapper has 859.53 M params.
+making attention of type 'vanilla' with 512 in_channels
+Working with z of shape (1, 4, 32, 32) = 4096 dimensions.
+making attention of type 'vanilla' with 512 in_channels
+Loading model from models/InstructDiffusion/checkpoints/v1-5-pruned-emaonly-adaption-task-humanalign.ckpt
+['betas', 'alphas_cumprod', 'alphas_cumprod_prev', 'sqrt_alphas_cumprod', 'sqrt_one_minus_alphas_cumprod', 'log_one_minus_alphas_cumprod', 'sqrt_recip_alphas_cumprod', 'sqrt_recipm1_alphas_cumprod', 'posterior_variance', 'posterior_log_variance_clipped', 'posterior_mean_coef1', 'posterior_mean_coef2'] []
+skip image [data/annotation_images/0_random_140/000000000000.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000001.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000002.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000003.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000004.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000005.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000006.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000007.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000008.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000009.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000010.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000011.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000012.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000013.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000014.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000015.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000016.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000017.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000018.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000019.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000020.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000021.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000022.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000023.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000024.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000025.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000026.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000027.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000028.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000029.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000030.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000031.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000032.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000033.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000034.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000035.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000036.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000037.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000038.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000039.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000040.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000041.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000042.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000043.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000044.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000045.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000046.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000047.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000048.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000049.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000050.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000051.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000052.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000053.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000054.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000055.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000056.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000057.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000058.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000059.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000060.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000061.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000062.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000063.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000064.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000065.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000066.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000067.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000068.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000069.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000070.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000071.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000072.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000073.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000074.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000075.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000076.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000077.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000078.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000079.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000080.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000081.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000082.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000083.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000084.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000085.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000086.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000087.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000088.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000089.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000090.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000091.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000092.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000093.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000094.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000095.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000096.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000097.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000098.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000099.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000100.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000101.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000102.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000103.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000104.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000105.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000106.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000107.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000108.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000109.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000110.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000111.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000112.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000113.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000114.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000115.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000116.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000117.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000118.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000119.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000120.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000121.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000122.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000123.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000124.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000125.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000126.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000127.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000128.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000129.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000130.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000131.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000132.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000133.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000134.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000135.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000136.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000137.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000138.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/0_random_140/000000000139.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/1_change_object_80/1_artificial/1_animal/111000000000.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/1_change_object_80/1_artificial/1_animal/111000000001.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/1_change_object_80/1_artificial/1_animal/111000000002.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/1_change_object_80/1_artificial/1_animal/111000000003.jpg] with [instruct-diffusion]
+skip image [data/annotation_images/1_change_object_80/1_artificial/1_animal/111000000004.jpg] with [instruct-diffusion]
+Warning: Source image not found, skipping: data/annotation_images/1_change_object_80/1_artificial/1_animal/111000000005.jpg
+editing image [data/annotation_images/1_change_object_80/1_artificial/1_animal/111000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/1_artificial/1_animal/111000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/1_artificial/1_animal/111000000008.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/1_artificial/1_animal/111000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/1_artificial/2_human/112000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/1_artificial/2_human/112000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/1_artificial/2_human/112000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/1_artificial/2_human/112000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/1_artificial/2_human/112000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/1_artificial/2_human/112000000005.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/1_artificial/2_human/112000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/1_artificial/2_human/112000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/1_artificial/2_human/112000000008.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/1_artificial/2_human/112000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/1_artificial/3_indoor/113000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/1_artificial/3_indoor/113000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/1_artificial/3_indoor/113000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+Warning: Source image not found, skipping: data/annotation_images/1_change_object_80/1_artificial/3_indoor/113000000003.jpg
+editing image [data/annotation_images/1_change_object_80/1_artificial/3_indoor/113000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/1_artificial/3_indoor/113000000005.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/1_artificial/3_indoor/113000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/1_artificial/3_indoor/113000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/1_artificial/3_indoor/113000000008.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/1_artificial/3_indoor/113000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/1_artificial/4_outdoor/114000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/1_artificial/4_outdoor/114000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/1_artificial/4_outdoor/114000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/1_artificial/4_outdoor/114000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/1_artificial/4_outdoor/114000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/1_artificial/4_outdoor/114000000005.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/1_artificial/4_outdoor/114000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/1_artificial/4_outdoor/114000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/1_artificial/4_outdoor/114000000008.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/1_artificial/4_outdoor/114000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/1_animal/121000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/1_animal/121000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/1_animal/121000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/1_animal/121000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/1_animal/121000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/1_animal/121000000005.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/1_animal/121000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/1_animal/121000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/1_animal/121000000008.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/1_animal/121000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/2_human/122000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/2_human/122000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/2_human/122000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/2_human/122000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/2_human/122000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/2_human/122000000005.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/2_human/122000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/2_human/122000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/2_human/122000000008.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/2_human/122000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/3_indoor/123000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/3_indoor/123000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/3_indoor/123000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/3_indoor/123000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/3_indoor/123000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/3_indoor/123000000005.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/3_indoor/123000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/3_indoor/123000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/3_indoor/123000000008.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/3_indoor/123000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/4_outdoor/124000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/4_outdoor/124000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/4_outdoor/124000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/4_outdoor/124000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/4_outdoor/124000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/4_outdoor/124000000005.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/4_outdoor/124000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/4_outdoor/124000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/4_outdoor/124000000008.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/1_change_object_80/2_natural/4_outdoor/124000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/1_animal/211000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/1_animal/211000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/1_animal/211000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/1_animal/211000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/1_animal/211000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/1_animal/211000000005.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/1_animal/211000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/1_animal/211000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/1_animal/211000000008.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/1_animal/211000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/2_human/212000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/2_human/212000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/2_human/212000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/2_human/212000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/2_human/212000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/2_human/212000000005.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/2_human/212000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/2_human/212000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/2_human/212000000008.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/2_human/212000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/3_indoor/213000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/3_indoor/213000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/3_indoor/213000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/3_indoor/213000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/3_indoor/213000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/3_indoor/213000000005.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/3_indoor/213000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/3_indoor/213000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/3_indoor/213000000008.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/3_indoor/213000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/4_outdoor/214000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/4_outdoor/214000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/4_outdoor/214000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/4_outdoor/214000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/4_outdoor/214000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/4_outdoor/214000000005.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/4_outdoor/214000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/4_outdoor/214000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/4_outdoor/214000000008.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/1_artificial/4_outdoor/214000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/1_animal/221000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/1_animal/221000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/1_animal/221000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/1_animal/221000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/1_animal/221000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/1_animal/221000000005.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/1_animal/221000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/1_animal/221000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/1_animal/221000000008.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/1_animal/221000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/2_human/222000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/2_human/222000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/2_human/222000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/2_human/222000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/2_human/222000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/2_human/222000000005.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/2_human/222000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/2_human/222000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/2_human/222000000008.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/2_human/222000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/3_indoor/223000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/3_indoor/223000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/3_indoor/223000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/3_indoor/223000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/3_indoor/223000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/3_indoor/223000000005.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/3_indoor/223000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/3_indoor/223000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/3_indoor/223000000008.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/3_indoor/223000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/4_outdoor/224000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/4_outdoor/224000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/4_outdoor/224000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/4_outdoor/224000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/4_outdoor/224000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/4_outdoor/224000000005.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/4_outdoor/224000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/4_outdoor/224000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/4_outdoor/224000000008.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/2_add_object_80/2_natural/4_outdoor/224000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/1_animal/311000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/1_animal/311000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/1_animal/311000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/1_animal/311000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/1_animal/311000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/1_animal/311000000005.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/1_animal/311000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/1_animal/311000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/1_animal/311000000008.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/1_animal/311000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/2_human/312000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/2_human/312000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/2_human/312000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/2_human/312000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/2_human/312000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/2_human/312000000005.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/2_human/312000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/2_human/312000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/2_human/312000000008.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/2_human/312000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/3_indoor/313000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/3_indoor/313000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/3_indoor/313000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/3_indoor/313000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/3_indoor/313000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/3_indoor/313000000005.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/3_indoor/313000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/3_indoor/313000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/3_indoor/313000000008.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/3_indoor/313000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/4_outdoor/314000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/4_outdoor/314000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/4_outdoor/314000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/4_outdoor/314000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/4_outdoor/314000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/4_outdoor/314000000005.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/4_outdoor/314000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/4_outdoor/314000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/4_outdoor/314000000008.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/1_artificial/4_outdoor/314000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/1_animal/321000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/1_animal/321000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/1_animal/321000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/1_animal/321000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/1_animal/321000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/1_animal/321000000005.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/1_animal/321000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/1_animal/321000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/1_animal/321000000008.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/1_animal/321000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/2_human/322000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/2_human/322000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/2_human/322000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/2_human/322000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/2_human/322000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/2_human/322000000005.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/2_human/322000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/2_human/322000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/2_human/322000000008.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/2_human/322000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/3_indoor/323000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/3_indoor/323000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/3_indoor/323000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/3_indoor/323000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/3_indoor/323000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/3_indoor/323000000005.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/3_indoor/323000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/3_indoor/323000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/3_indoor/323000000008.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/3_indoor/323000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/4_outdoor/324000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/4_outdoor/324000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/4_outdoor/324000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/4_outdoor/324000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/4_outdoor/324000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/4_outdoor/324000000005.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/4_outdoor/324000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/4_outdoor/324000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/4_outdoor/324000000008.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/3_delete_object_80/2_natural/4_outdoor/324000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/1_artificial/1_animal/411000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/1_artificial/1_animal/411000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/1_artificial/1_animal/411000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/1_artificial/1_animal/411000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/1_artificial/1_animal/411000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/1_artificial/2_human/412000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/1_artificial/2_human/412000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/1_artificial/2_human/412000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/1_artificial/2_human/412000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/1_artificial/2_human/412000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/1_artificial/3_indoor/413000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/1_artificial/3_indoor/413000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/1_artificial/3_indoor/413000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/1_artificial/3_indoor/413000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/1_artificial/3_indoor/413000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/1_artificial/4_outdoor/414000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/1_artificial/4_outdoor/414000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/1_artificial/4_outdoor/414000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/1_artificial/4_outdoor/414000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/1_artificial/4_outdoor/414000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/2_natural/1_animal/421000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/2_natural/1_animal/421000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/2_natural/1_animal/421000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/2_natural/1_animal/421000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/2_natural/1_animal/421000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/2_natural/2_human/422000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/2_natural/2_human/422000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/2_natural/2_human/422000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/2_natural/2_human/422000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/2_natural/2_human/422000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/2_natural/3_indoor/423000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/2_natural/3_indoor/423000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/2_natural/3_indoor/423000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/2_natural/3_indoor/423000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/2_natural/3_indoor/423000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/2_natural/4_outdoor/424000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/2_natural/4_outdoor/424000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/2_natural/4_outdoor/424000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/2_natural/4_outdoor/424000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/4_change_attribute_content_40/2_natural/4_outdoor/424000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/1_artificial/1_animal/511000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/1_artificial/1_animal/511000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/1_artificial/1_animal/511000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/1_artificial/1_animal/511000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/1_artificial/1_animal/511000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/1_artificial/2_human/512000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/1_artificial/2_human/512000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/1_artificial/2_human/512000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/1_artificial/2_human/512000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/1_artificial/2_human/512000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/1_artificial/3_indoor/513000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/1_artificial/3_indoor/513000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/1_artificial/3_indoor/513000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/1_artificial/3_indoor/513000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/1_artificial/3_indoor/513000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/1_artificial/4_outdoor/514000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/1_artificial/4_outdoor/514000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/1_artificial/4_outdoor/514000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/1_artificial/4_outdoor/514000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/1_artificial/4_outdoor/514000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/2_natural/1_animal/521000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/2_natural/1_animal/521000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/2_natural/1_animal/521000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/2_natural/1_animal/521000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/2_natural/1_animal/521000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/2_natural/2_human/522000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/2_natural/2_human/522000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/2_natural/2_human/522000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/2_natural/2_human/522000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/2_natural/2_human/522000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/2_natural/3_indoor/523000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/2_natural/3_indoor/523000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/2_natural/3_indoor/523000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/2_natural/3_indoor/523000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/2_natural/3_indoor/523000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/2_natural/4_outdoor/524000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/2_natural/4_outdoor/524000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/2_natural/4_outdoor/524000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/2_natural/4_outdoor/524000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/5_change_attribute_pose_40/2_natural/4_outdoor/524000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/1_artificial/1_animal/611000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/1_artificial/1_animal/611000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/1_artificial/1_animal/611000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/1_artificial/1_animal/611000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/1_artificial/1_animal/611000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/1_artificial/2_human/612000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/1_artificial/2_human/612000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/1_artificial/2_human/612000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/1_artificial/2_human/612000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/1_artificial/2_human/612000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/1_artificial/3_indoor/613000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/1_artificial/3_indoor/613000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/1_artificial/3_indoor/613000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/1_artificial/3_indoor/613000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/1_artificial/3_indoor/613000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/1_artificial/4_outdoor/614000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/1_artificial/4_outdoor/614000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/1_artificial/4_outdoor/614000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/1_artificial/4_outdoor/614000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/1_artificial/4_outdoor/614000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/2_natural/1_animal/621000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/2_natural/1_animal/621000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/2_natural/1_animal/621000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/2_natural/1_animal/621000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/2_natural/1_animal/621000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/2_natural/2_human/622000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/2_natural/2_human/622000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/2_natural/2_human/622000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/2_natural/2_human/622000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/2_natural/2_human/622000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/2_natural/3_indoor/623000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/2_natural/3_indoor/623000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/2_natural/3_indoor/623000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/2_natural/3_indoor/623000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/2_natural/3_indoor/623000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/2_natural/4_outdoor/624000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/2_natural/4_outdoor/624000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/2_natural/4_outdoor/624000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/2_natural/4_outdoor/624000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/6_change_attribute_color_40/2_natural/4_outdoor/624000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/7_change_attribute_material_40/1_artificial/1_animal/711000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/7_change_attribute_material_40/1_artificial/1_animal/711000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/7_change_attribute_material_40/1_artificial/1_animal/711000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/7_change_attribute_material_40/1_artificial/1_animal/711000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/7_change_attribute_material_40/1_artificial/1_animal/711000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/7_change_attribute_material_40/1_artificial/2_human/712000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/7_change_attribute_material_40/1_artificial/2_human/712000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/7_change_attribute_material_40/1_artificial/2_human/712000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/7_change_attribute_material_40/1_artificial/2_human/712000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/7_change_attribute_material_40/1_artificial/2_human/712000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/7_change_attribute_material_40/1_artificial/3_indoor/713000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/7_change_attribute_material_40/1_artificial/3_indoor/713000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/7_change_attribute_material_40/1_artificial/3_indoor/713000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/7_change_attribute_material_40/1_artificial/3_indoor/713000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/7_change_attribute_material_40/1_artificial/3_indoor/713000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/7_change_attribute_material_40/1_artificial/4_outdoor/714000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/7_change_attribute_material_40/1_artificial/4_outdoor/714000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/7_change_attribute_material_40/1_artificial/4_outdoor/714000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/7_change_attribute_material_40/1_artificial/4_outdoor/714000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/7_change_attribute_material_40/1_artificial/4_outdoor/714000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/7_change_attribute_material_40/2_natural/1_animal/721000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/7_change_attribute_material_40/2_natural/1_animal/721000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+Warning: Source image not found, skipping: data/annotation_images/7_change_attribute_material_40/2_natural/1_animal/721000000002.jpg
+editing image [data/annotation_images/7_change_attribute_material_40/2_natural/1_animal/721000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/7_change_attribute_material_40/2_natural/1_animal/721000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+Warning: Source image not found, skipping: data/annotation_images/7_change_attribute_material_40/2_natural/2_human/722000000000.jpg
+editing image [data/annotation_images/7_change_attribute_material_40/2_natural/2_human/722000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+Warning: Source image not found, skipping: data/annotation_images/7_change_attribute_material_40/2_natural/2_human/722000000002.jpg
+editing image [data/annotation_images/7_change_attribute_material_40/2_natural/2_human/722000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+Warning: Source image not found, skipping: data/annotation_images/7_change_attribute_material_40/2_natural/2_human/722000000004.jpg
+editing image [data/annotation_images/7_change_attribute_material_40/2_natural/3_indoor/723000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/7_change_attribute_material_40/2_natural/3_indoor/723000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/7_change_attribute_material_40/2_natural/3_indoor/723000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/7_change_attribute_material_40/2_natural/3_indoor/723000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/7_change_attribute_material_40/2_natural/3_indoor/723000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/7_change_attribute_material_40/2_natural/4_outdoor/724000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/7_change_attribute_material_40/2_natural/4_outdoor/724000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/7_change_attribute_material_40/2_natural/4_outdoor/724000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/7_change_attribute_material_40/2_natural/4_outdoor/724000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/7_change_attribute_material_40/2_natural/4_outdoor/724000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/1_artificial/1_animal/811000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/1_artificial/1_animal/811000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/1_artificial/1_animal/811000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/1_artificial/1_animal/811000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/1_artificial/1_animal/811000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/1_artificial/1_animal/811000000005.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/1_artificial/1_animal/811000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/1_artificial/1_animal/811000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/1_artificial/1_animal/811000000008.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/1_artificial/1_animal/811000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/1_artificial/2_human/812000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/1_artificial/2_human/812000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/1_artificial/2_human/812000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/1_artificial/2_human/812000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/1_artificial/2_human/812000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/1_artificial/2_human/812000000005.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/1_artificial/2_human/812000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/1_artificial/2_human/812000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/1_artificial/2_human/812000000008.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/1_artificial/2_human/812000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/1_artificial/3_indoor/813000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/1_artificial/3_indoor/813000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/1_artificial/3_indoor/813000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/1_artificial/3_indoor/813000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/1_artificial/3_indoor/813000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/1_artificial/3_indoor/813000000005.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/1_artificial/3_indoor/813000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/1_artificial/3_indoor/813000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/1_artificial/3_indoor/813000000008.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/1_artificial/3_indoor/813000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/1_artificial/4_outdoor/814000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/1_artificial/4_outdoor/814000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/1_artificial/4_outdoor/814000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/1_artificial/4_outdoor/814000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/1_artificial/4_outdoor/814000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/1_artificial/4_outdoor/814000000005.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/1_artificial/4_outdoor/814000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/1_artificial/4_outdoor/814000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+Warning: Source image not found, skipping: data/annotation_images/8_change_background_80/1_artificial/4_outdoor/814000000008.jpg
+editing image [data/annotation_images/8_change_background_80/1_artificial/4_outdoor/814000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/1_animal/821000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/1_animal/821000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/1_animal/821000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/1_animal/821000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/1_animal/821000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/1_animal/821000000005.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/1_animal/821000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/1_animal/821000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/1_animal/821000000008.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/1_animal/821000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/2_human/822000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/2_human/822000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/2_human/822000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/2_human/822000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/2_human/822000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/2_human/822000000005.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/2_human/822000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/2_human/822000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/2_human/822000000008.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/2_human/822000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/3_indoor/823000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/3_indoor/823000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/3_indoor/823000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/3_indoor/823000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/3_indoor/823000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/3_indoor/823000000005.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/3_indoor/823000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/3_indoor/823000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/3_indoor/823000000008.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/3_indoor/823000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/4_outdoor/824000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/4_outdoor/824000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/4_outdoor/824000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/4_outdoor/824000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/4_outdoor/824000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/4_outdoor/824000000005.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/4_outdoor/824000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/4_outdoor/824000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/4_outdoor/824000000008.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/8_change_background_80/2_natural/4_outdoor/824000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/1_animal/911000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/1_animal/911000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/1_animal/911000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/1_animal/911000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/1_animal/911000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/1_animal/911000000005.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/1_animal/911000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/1_animal/911000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/1_animal/911000000008.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/1_animal/911000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/2_human/912000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/2_human/912000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/2_human/912000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/2_human/912000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/2_human/912000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/2_human/912000000005.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/2_human/912000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/2_human/912000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/2_human/912000000008.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/2_human/912000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/3_indoor/913000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/3_indoor/913000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/3_indoor/913000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/3_indoor/913000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/3_indoor/913000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/3_indoor/913000000005.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/3_indoor/913000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/3_indoor/913000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/3_indoor/913000000008.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/3_indoor/913000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/4_outdoor/914000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/4_outdoor/914000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/4_outdoor/914000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/4_outdoor/914000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/4_outdoor/914000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/4_outdoor/914000000005.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/4_outdoor/914000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/4_outdoor/914000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/4_outdoor/914000000008.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/1_artificial/4_outdoor/914000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/1_animal/921000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/1_animal/921000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/1_animal/921000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/1_animal/921000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/1_animal/921000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/1_animal/921000000005.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/1_animal/921000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/1_animal/921000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/1_animal/921000000008.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/1_animal/921000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/2_human/922000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/2_human/922000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/2_human/922000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/2_human/922000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/2_human/922000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/2_human/922000000005.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/2_human/922000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/2_human/922000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/2_human/922000000008.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/2_human/922000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/3_indoor/923000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/3_indoor/923000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/3_indoor/923000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/3_indoor/923000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/3_indoor/923000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/3_indoor/923000000005.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/3_indoor/923000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/3_indoor/923000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/3_indoor/923000000008.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/3_indoor/923000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/4_outdoor/924000000000.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/4_outdoor/924000000001.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/4_outdoor/924000000002.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/4_outdoor/924000000003.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/4_outdoor/924000000004.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/4_outdoor/924000000005.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/4_outdoor/924000000006.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/4_outdoor/924000000007.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/4_outdoor/924000000008.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish
+editing image [data/annotation_images/9_change_style_80/2_natural/4_outdoor/924000000009.jpg] with [instruct-diffusion]
+torch.Size([512, 512, 3])
+finish

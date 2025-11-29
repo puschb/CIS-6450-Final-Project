@@ -1,0 +1,19 @@
+InstructDiffusion Baseline Evaluation Results
+=============================================
+
+Total Images Processed: 693
+
+Metrics Summary:
+----------------
+
+SSIM (Structural Similarity):
+Mean: 0.6787
+Std: 0.1622
+
+LPIPS (Perceptual Distance):
+Mean: 0.1848
+Std: 0.1363
+
+CLIP Similarity (Semantic Alignment):
+Mean: 24.1943
+Std: 4.0657

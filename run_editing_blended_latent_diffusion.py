@@ -183,15 +183,17 @@ if __name__ == "__main__":
     parser.add_argument('--output_path', type=str, default="output") # the editing category that needed to run
     parser.add_argument('--edit_category_list', nargs = '+', type=str, default=["0","1","2","3","4","5","6","7","8","9"]) # the editing category that needed to run
     parser.add_argument('--edit_method_list', nargs = '+', type=str, default=["blended-latent-diffusion"]) # the editing methods that needed to run
+    parser.add_argument('--model_path', type=str, default="hotshotco/SDXL-512") # model path (SD v1.4, SDXL, etc.)
     args = parser.parse_args()
-    
+
     rerun_exist_images=args.rerun_exist_images
     data_path=args.data_path
     output_path=args.output_path
     edit_category_list=args.edit_category_list
     edit_method_list=args.edit_method_list
-    
-    bld = BlendedLatnetDiffusion()
+    model_path=args.model_path
+
+    bld = BlendedLatnetDiffusion(model_path=model_path)
         
     with open(f"{data_path}/mapping_file.json", "r") as f:
         editing_instruction = json.load(f)

@@ -37,15 +37,19 @@ def sample_xts_from_x0(model, x0, num_inference_steps=50):
     sqrt_one_minus_alpha_bar = (1-alpha_bar) ** 0.5
     alphas = model.scheduler.alphas
     betas = 1 - alphas
+
+    # Get dimensions from x0 to handle both SD v1.4 (64x64) and SDXL (128x128) latents
+    batch_size, channels, height, width = x0.shape
+
     variance_noise_shape = (
             num_inference_steps,
-            model.unet.in_channels, 
-            model.unet.sample_size,
-            model.unet.sample_size)
-    
+            channels,
+            height,
+            width)
+
     timesteps = model.scheduler.timesteps.to(model.device)
     t_to_idx = {int(v):k for k,v in enumerate(timesteps)}
-    xts = torch.zeros((num_inference_steps+1,model.unet.in_channels, model.unet.sample_size, model.unet.sample_size)).to(x0.device)
+    xts = torch.zeros((num_inference_steps+1, channels, height, width), device=x0.device, dtype=x0.dtype)
     xts[0] = x0
     for t in reversed(timesteps):
         idx = num_inference_steps-t_to_idx[int(t)]
@@ -56,16 +60,106 @@ def sample_xts_from_x0(model, x0, num_inference_steps=50):
 
 
 def encode_text(model, prompts):
-    text_input = model.tokenizer(
-        prompts,
-        padding="max_length",
-        max_length=model.tokenizer.model_max_length, 
-        truncation=True,
-        return_tensors="pt",
-    )
-    with torch.no_grad():
-        text_encoding = model.text_encoder(text_input.input_ids.to(model.device))[0]
-    return text_encoding
+    """Encode text prompts. Returns text_embeddings for compatibility."""
+    from diffusers import StableDiffusionXLPipeline
+
+    if isinstance(model, StableDiffusionXLPipeline):
+        # SDXL: Use encode_prompt to handle dual text encoders
+        # Handle both single prompt (string) and multiple prompts (list)
+        if isinstance(prompts, list):
+            # Encode each prompt separately and concatenate
+            all_prompt_embeds = []
+            all_pooled_embeds = []
+            for prompt in prompts:
+                with torch.no_grad():
+                    prompt_embeds, _, pooled_embeds, _ = model.encode_prompt(
+                        prompt=prompt,
+                        prompt_2=None,
+                        device=model.device,
+                        num_images_per_prompt=1,
+                        do_classifier_free_guidance=False
+                    )
+                all_prompt_embeds.append(prompt_embeds)
+                all_pooled_embeds.append(pooled_embeds)
+
+            prompt_embeds = torch.cat(all_prompt_embeds, dim=0)
+            pooled_embeds = torch.cat(all_pooled_embeds, dim=0)
+        else:
+            # Single string prompt
+            with torch.no_grad():
+                prompt_embeds, _, pooled_embeds, _ = model.encode_prompt(
+                    prompt=prompts,
+                    prompt_2=None,
+                    device=model.device,
+                    num_images_per_prompt=1,
+                    do_classifier_free_guidance=False
+                )
+
+        # Store pooled embeddings in model for later use
+        if not hasattr(model, '_cached_pooled_embeds'):
+            model._cached_pooled_embeds = {}
+        model._cached_pooled_embeds[prompts if isinstance(prompts, str) else str(prompts)] = pooled_embeds
+        return prompt_embeds
+    else:
+        # SD 1.4: Original implementation
+        text_input = model.tokenizer(
+            prompts,
+            padding="max_length",
+            max_length=model.tokenizer.model_max_length,
+            truncation=True,
+            return_tensors="pt",
+        )
+        with torch.no_grad():
+            text_encoding = model.text_encoder(text_input.input_ids.to(model.device))[0]
+        return text_encoding
+
+def get_added_cond_kwargs(model, prompt):
+    """Get added_cond_kwargs for SDXL (pooled embeddings + time_ids)."""
+    from diffusers import StableDiffusionXLPipeline
+    import torch
+
+    if isinstance(model, StableDiffusionXLPipeline):
+        # Get cached pooled embeddings or encode now
+        cache_key = prompt if isinstance(prompt, str) else str(prompt)
+        if hasattr(model, '_cached_pooled_embeds') and cache_key in model._cached_pooled_embeds:
+            pooled_embeds = model._cached_pooled_embeds[cache_key]
+        else:
+            # Encode to get pooled embeddings - handle both single and list of prompts
+            if isinstance(prompt, list):
+                # Encode each prompt separately and concatenate
+                all_pooled_embeds = []
+                for p in prompt:
+                    _, _, pooled, _ = model.encode_prompt(
+                        prompt=p,
+                        prompt_2=None,
+                        device=model.device,
+                        num_images_per_prompt=1,
+                        do_classifier_free_guidance=False
+                    )
+                    all_pooled_embeds.append(pooled)
+                pooled_embeds = torch.cat(all_pooled_embeds, dim=0)
+            else:
+                _, _, pooled_embeds, _ = model.encode_prompt(
+                    prompt=prompt,
+                    prompt_2=None,
+                    device=model.device,
+                    num_images_per_prompt=1,
+                    do_classifier_free_guidance=False
+                )
+
+        # Get batch size from pooled embeddings
+        batch_size = pooled_embeds.shape[0]
+
+        # Use pooled_embeds dtype to match what DirectInversion does (critical for numerical stability)
+        embeds_dtype = pooled_embeds.dtype
+
+        # Create added_cond_kwargs with matching dtype and batch size
+        return {
+            "text_embeds": pooled_embeds,
+            "time_ids": torch.tensor([[512, 512, 0, 0, 512, 512]] * batch_size, device=model.device, dtype=embeds_dtype)
+        }
+    else:
+        return None
 
 def forward_step(model, model_output, timestep, sample):
     next_timestep = min(model.scheduler.config.num_train_timesteps - 2,
@@ -107,12 +201,22 @@ def inversion_forward_process(model, x0,
     if not prompt=="":
         text_embeddings = encode_text(model, prompt)
     uncond_embedding = encode_text(model, "")
+
+    # Compute added_cond_kwargs once before the loop and reuse it
+    # This prevents SDXL from "hallucinating" different cropping parameters at each step
+    uncond_added_kwargs = get_added_cond_kwargs(model, "")
+    cond_added_kwargs = get_added_cond_kwargs(model, prompt) if not prompt=="" else None
+
     timesteps = model.scheduler.timesteps.to(model.device)
+
+    # Get dimensions from x0 to handle both SD v1.4 (64x64) and SDXL (128x128) latents
+    batch_size, channels, height, width = x0.shape
     variance_noise_shape = (
         num_inference_steps,
-        model.unet.in_channels, 
-        model.unet.sample_size,
-        model.unet.sample_size)
+        channels,
+        height,
+        width)
+
     if etas is None or (type(etas) in [int, float] and etas == 0):
         eta_is_zero = True
         zs = None
@@ -121,7 +225,7 @@ def inversion_forward_process(model, x0,
         if type(etas) in [int, float]: etas = [etas]*model.scheduler.num_inference_steps
         xts = sample_xts_from_x0(model, x0, num_inference_steps=num_inference_steps)
         alpha_bar = model.scheduler.alphas_cumprod
-        zs = torch.zeros(size=variance_noise_shape, device=model.device)
+        zs = torch.zeros(size=variance_noise_shape, device=model.device, dtype=x0.dtype)
     t_to_idx = {int(v):k for k,v in enumerate(timesteps)}
     xt = x0
     op = timesteps
@@ -133,11 +237,18 @@ def inversion_forward_process(model, x0,
         if not eta_is_zero:
             xt = xts[idx+1][None]
             # xt = xts_cycle[idx+1][None]
-                    
+
         with torch.no_grad():
-            out = model.unet.forward(xt, timestep =  t, encoder_hidden_states = uncond_embedding)
+            if uncond_added_kwargs is not None:
+                out = model.unet.forward(xt, timestep=t, encoder_hidden_states=uncond_embedding, added_cond_kwargs=uncond_added_kwargs)
+            else:
+                out = model.unet.forward(xt, timestep=t, encoder_hidden_states=uncond_embedding)
+
             if not prompt=="":
-                cond_out = model.unet.forward(xt, timestep=t, encoder_hidden_states = text_embeddings)
+                if cond_added_kwargs is not None:
+                    cond_out = model.unet.forward(xt, timestep=t, encoder_hidden_states=text_embeddings, added_cond_kwargs=cond_added_kwargs)
+                else:
+                    cond_out = model.unet.forward(xt, timestep=t, encoder_hidden_states=text_embeddings)
 
         if not prompt=="":
             ## classifier free guidance
@@ -224,28 +335,38 @@ def inversion_reverse_process(model,
     text_embeddings = encode_text(model, prompts)
     uncond_embedding = encode_text(model, [""] * batch_size)
 
+    # Compute added_cond_kwargs once before the loop and reuse it
+    # This prevents SDXL from "hallucinating" different cropping parameters at each step
+    uncond_added_kwargs = get_added_cond_kwargs(model, [""] * batch_size)
+    cond_added_kwargs = get_added_cond_kwargs(model, prompts) if prompts else None
+
     if etas is None: etas = 0
     if type(etas) in [int, float]: etas = [etas]*model.scheduler.num_inference_steps
     assert len(etas) == model.scheduler.num_inference_steps
     timesteps = model.scheduler.timesteps.to(model.device)
 
     xt = xT.expand(batch_size, -1, -1, -1)
-    op = timesteps[-zs.shape[0]:] 
+    op = timesteps[-zs.shape[0]:]
 
     t_to_idx = {int(v):k for k,v in enumerate(timesteps[-zs.shape[0]:])}
 
     for t in op:
-        idx = model.scheduler.num_inference_steps-t_to_idx[int(t)]-(model.scheduler.num_inference_steps-zs.shape[0]+1)    
+        idx = model.scheduler.num_inference_steps-t_to_idx[int(t)]-(model.scheduler.num_inference_steps-zs.shape[0]+1)
+
         ## Unconditional embedding
         with torch.no_grad():
-            uncond_out = model.unet.forward(xt, timestep =  t, 
-                                            encoder_hidden_states = uncond_embedding)
+            if uncond_added_kwargs is not None:
+                uncond_out = model.unet.forward(xt, timestep=t, encoder_hidden_states=uncond_embedding, added_cond_kwargs=uncond_added_kwargs)
+            else:
+                uncond_out = model.unet.forward(xt, timestep=t, encoder_hidden_states=uncond_embedding)
 
-            ## Conditional embedding  
-        if prompts:  
+        ## Conditional embedding
+        if prompts:
             with torch.no_grad():
-                cond_out = model.unet.forward(xt, timestep =  t, 
-                                                encoder_hidden_states = text_embeddings)
+                if cond_added_kwargs is not None:
+                    cond_out = model.unet.forward(xt, timestep=t, encoder_hidden_states=text_embeddings, added_cond_kwargs=cond_added_kwargs)
+                else:
+                    cond_out = model.unet.forward(xt, timestep=t, encoder_hidden_states=text_embeddings)
             
         
         z = zs[idx] if not zs is None else None

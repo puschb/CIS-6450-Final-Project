@@ -189,7 +189,12 @@ def register_attention_control(model, controller):
         else:
             to_out = self.to_out
 
-        def forward(x, context=None, mask=None):
+        def forward(hidden_states, encoder_hidden_states=None, attention_mask=None, **kwargs):
+            # Support both old (x, context, mask) and new (hidden_states, encoder_hidden_states, attention_mask) signatures
+            x = hidden_states
+            context = encoder_hidden_states
+            mask = attention_mask
+
             batch_size, sequence_length, dim = x.shape
             h = self.heads
             q = self.to_q(x)
@@ -197,9 +202,16 @@ def register_attention_control(model, controller):
             context = context if is_cross else x
             k = self.to_k(context)
             v = self.to_v(context)
-            q = self.reshape_heads_to_batch_dim(q)
-            k = self.reshape_heads_to_batch_dim(k)
-            v = self.reshape_heads_to_batch_dim(v)
+
+            # Handle both reshape_heads_to_batch_dim and head_to_batch_dim naming
+            if hasattr(self, 'reshape_heads_to_batch_dim'):
+                q = self.reshape_heads_to_batch_dim(q)
+                k = self.reshape_heads_to_batch_dim(k)
+                v = self.reshape_heads_to_batch_dim(v)
+            else:
+                q = self.head_to_batch_dim(q)
+                k = self.head_to_batch_dim(k)
+                v = self.head_to_batch_dim(v)
 
             sim = torch.einsum("b i d, b j d -> b i j", q, k) * self.scale
 
@@ -213,7 +225,13 @@ def register_attention_control(model, controller):
             attn = sim.softmax(dim=-1)
             attn = controller(attn, is_cross, place_in_unet)
             out = torch.einsum("b i j, b j d -> b i d", attn, v)
-            out = self.reshape_batch_dim_to_heads(out)
+
+            # Handle both reshape_batch_dim_to_heads and batch_to_head_dim naming
+            if hasattr(self, 'reshape_batch_dim_to_heads'):
+                out = self.reshape_batch_dim_to_heads(out)
+            else:
+                out = self.batch_to_head_dim(out)
+
             return to_out(out)
 
         return forward
@@ -230,7 +248,8 @@ def register_attention_control(model, controller):
         controller = DummyController()
 
     def register_recr(net_, count, place_in_unet):
-        if net_.__class__.__name__ == 'CrossAttention':
+        # SDXL uses 'Attention' class, SD v1.4 uses 'CrossAttention'
+        if net_.__class__.__name__ in ['CrossAttention', 'Attention']:
             net_.forward = ca_forward(net_, place_in_unet)
             return count + 1
         elif hasattr(net_, 'children'):

@@ -1,5 +1,5 @@
 import torch
-from diffusers import StableDiffusionPipeline
+from diffusers import StableDiffusionPipeline, StableDiffusionXLPipeline
 from diffusers import DDIMScheduler
 import numpy as np
 from PIL import Image
@@ -49,14 +49,9 @@ image_save_paths={
     }
 
 
-device = torch.device('cuda') if torch.cuda.is_available() else torch.device(
-    'cpu')
+device = None
 NUM_DDIM_STEPS = 50
-model_id="CompVis/stable-diffusion-v1-4"
-ldm_stable = StableDiffusionPipeline.from_pretrained(
-    model_id).to(device)
-ldm_stable.scheduler = DDIMScheduler.from_config(model_id, subfolder = "scheduler")
-ldm_stable.scheduler.set_timesteps(NUM_DDIM_STEPS)
+ldm_stable = None
 ETA=1
 SKIP=12
 
@@ -74,17 +69,26 @@ def edit_image_EF(edit_method,
         
         image_gt = torch.from_numpy(image_gt).float() / 127.5 - 1
         image_gt = image_gt.permute(2, 0, 1).unsqueeze(0).to(device)
-        with autocast("cuda"), inference_mode():
-            w0 = (ldm_stable.vae.encode(image_gt).latent_dist.mode() * 0.18215).float()
-            
+
+        # Get VAE scaling factor based on model type
+        vae_scale = 0.13025 if isinstance(ldm_stable, StableDiffusionXLPipeline) else 0.18215
+
+        # Don't use autocast for VAE encoding when model is in float32
+        # Autocast can cause NaN values with SDXL in float32 mode
+        with inference_mode():
+            w0 = ldm_stable.vae.encode(image_gt).latent_dist.mode() * vae_scale
+
+        # Ensure w0 is float32
+        w0 = w0.float()
+
         controller = AttentionStore()
         register_attention_control(ldm_stable, controller)
-            
+
         wt, zs, wts = inversion_forward_process(ldm_stable, w0, etas=ETA, prompt=prompt_src, cfg_scale=source_guidance_scale, prog_bar=True, num_inference_steps=NUM_DDIM_STEPS)
-        
+
         controller = AttentionStore()
         register_attention_control(ldm_stable, controller)
-        
+
         x0_reconstruct, _ = inversion_reverse_process(ldm_stable, xT=wts[NUM_DDIM_STEPS-SKIP], etas=ETA, prompts=[prompt_tar], cfg_scales=[target_guidance_scale], prog_bar=True, zs=zs[:(NUM_DDIM_STEPS-SKIP)], controller=controller)
 
         cfg_scale_list = [source_guidance_scale, target_guidance_scale]
@@ -97,10 +101,12 @@ def edit_image_EF(edit_method,
 
         register_attention_control(ldm_stable, controller)
         w0, _ = inversion_reverse_process(ldm_stable, xT=wts[NUM_DDIM_STEPS-SKIP], etas=ETA, prompts=prompts, cfg_scales=cfg_scale_list, prog_bar=True, zs=zs[:(NUM_DDIM_STEPS-SKIP)], controller=controller)
-        with autocast("cuda"), inference_mode():
-            x0_dec = ldm_stable.vae.decode(1 / 0.18215 * w0[1].unsqueeze(0)).sample
-            x0_reconstruct_edit = ldm_stable.vae.decode(1 / 0.18215 * w0[0].unsqueeze(0)).sample
-            x0_reconstruct = ldm_stable.vae.decode(1 / 0.18215 * x0_reconstruct[0].unsqueeze(0)).sample
+
+        # Don't use autocast for VAE decoding when model is in float32
+        with inference_mode():
+            x0_dec = ldm_stable.vae.decode(1 / vae_scale * w0[1].unsqueeze(0)).sample
+            x0_reconstruct_edit = ldm_stable.vae.decode(1 / vae_scale * w0[0].unsqueeze(0)).sample
+            x0_reconstruct = ldm_stable.vae.decode(1 / vae_scale * x0_reconstruct[0].unsqueeze(0)).sample
             
         image_instruct = txt_draw(f"source prompt: {prompt_src}\ntarget prompt: {prompt_tar}")
             
@@ -125,13 +131,41 @@ if __name__ == "__main__":
     parser.add_argument('--output_path', type=str, default="output") # the editing category that needed to run
     parser.add_argument('--edit_category_list', nargs = '+', type=str, default=["0","1","2","3","4","5","6","7","8","9"]) # the editing category that needed to run
     parser.add_argument('--edit_method_list', nargs = '+', type=str, default=["edit-friendly-inversion+p2p"]) # the editing methods that needed to run
+    parser.add_argument('--model_type', type=str, default="sd14", choices=["sd14", "sdxl"]) # model type: sd14 or sdxl
+    parser.add_argument('--model_path', type=str, default=None) # custom model path
     args = parser.parse_args()
-    
+
     rerun_exist_images=args.rerun_exist_images
     data_path=args.data_path
     output_path=args.output_path
     edit_category_list=args.edit_category_list
     edit_method_list=args.edit_method_list
+    model_type=args.model_type
+    model_path=args.model_path
+
+    device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
+
+    if model_path is None:
+        if model_type == "sdxl":
+            model_id = "stabilityai/stable-diffusion-xl-base-1.0"
+        else:
+            model_id = "CompVis/stable-diffusion-v1-4"
+    else:
+        model_id = model_path
+
+    print(f"Loading {model_type.upper()} model from {model_id}")
+    if model_type == "sdxl":
+        ldm_stable = StableDiffusionXLPipeline.from_pretrained(model_id).to(device)
+        # Convert to float32 for consistency (SDXL checkpoint is in float16)
+        ldm_stable = ldm_stable.to(torch.float32)
+    else:
+        ldm_stable = StableDiffusionPipeline.from_pretrained(model_id).to(device)
+
+    ldm_stable.scheduler = DDIMScheduler.from_config(model_id, subfolder = "scheduler")
+    ldm_stable.scheduler.set_timesteps(NUM_DDIM_STEPS)
+
+    # Set VAE scaling factor based on model type
+    vae_scale_factor = 0.13025 if model_type == "sdxl" else 0.18215
     
     with open(f"{data_path}/mapping_file.json", "r") as f:
         editing_instruction = json.load(f)
@@ -149,7 +183,8 @@ if __name__ == "__main__":
         mask = Image.fromarray(np.uint8(mask_decode(item["mask"])[:,:,np.newaxis].repeat(3,2))).convert("L")
 
         for edit_method in edit_method_list:
-            present_image_save_path=image_path.replace(data_path, os.path.join(output_path,image_save_paths[edit_method]))
+            output_subpath = f"{image_save_paths[edit_method]}_{model_type}"
+            present_image_save_path=image_path.replace(data_path, os.path.join(output_path, output_subpath))
             if ((not os.path.exists(present_image_save_path)) or rerun_exist_images):
                 print(f"editing image [{image_path}] with [{edit_method}]")
                 setup_seed()

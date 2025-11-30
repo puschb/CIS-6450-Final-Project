@@ -88,6 +88,8 @@ if __name__ == "__main__":
     parser.add_argument('--edit_method_list', nargs = '+', type=str, default=["ddim+p2p"]) # the editing methods that needed to run
     parser.add_argument('--distilled_checkpoint', type=str, default=None) # path to distilled model checkpoint
     parser.add_argument('--num_ddim_steps', type=int, default=50) # number of DDIM steps
+    parser.add_argument('--model_type', type=str, default="sd14", choices=["sd14", "sdxl"]) # model type: sd14 or sdxl
+    parser.add_argument('--model_path', type=str, default=None) # custom model path (defaults: sd14=CompVis/stable-diffusion-v1-4, sdxl=hotshotco/SDXL-512)
     args = parser.parse_args()
 
     rerun_exist_images=args.rerun_exist_images
@@ -97,6 +99,8 @@ if __name__ == "__main__":
     edit_method_list=args.edit_method_list
     distilled_checkpoint=args.distilled_checkpoint
     num_ddim_steps=args.num_ddim_steps
+    model_type=args.model_type
+    model_path=args.model_path
 
     # Prefix output folders with 'distilled-' if using distilled model
     if distilled_checkpoint is not None:
@@ -104,7 +108,8 @@ if __name__ == "__main__":
             image_save_paths[key] = "distilled-" + image_save_paths[key]
 
     p2p_editor=P2PEditor(edit_method_list, torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu'),
-                         num_ddim_steps=num_ddim_steps, distilled_checkpoint=distilled_checkpoint)
+                         num_ddim_steps=num_ddim_steps, distilled_checkpoint=distilled_checkpoint,
+                         model_type=model_type, model_path=model_path)
     
     with open(f"{data_path}/mapping_file.json", "r") as f:
         editing_instruction = json.load(f)

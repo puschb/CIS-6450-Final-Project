@@ -6,6 +6,7 @@ from torch.optim.adam import Adam
 
 from models.p2p.attention_control import register_attention_control
 from utils.utils import slerp_tensor, image2latent, latent2image
+from diffusers import StableDiffusionXLPipeline
 
 class NegativePromptInversion:
     
@@ -256,9 +257,9 @@ class DirectInversion:
         difference_scale_pred_original_sample= - beta_prod_t ** 0.5  / alpha_prod_t ** 0.5
         difference_scale_pred_sample_direction = (1 - alpha_prod_t_prev) ** 0.5 
         difference_scale = alpha_prod_t_prev ** 0.5 * difference_scale_pred_original_sample + difference_scale_pred_sample_direction
-        
+
         return prev_sample,difference_scale
-    
+
     def next_step(self, model_output, timestep: int, sample):
         timestep, next_timestep = min(timestep - self.scheduler.config.num_train_timesteps // self.scheduler.num_inference_steps, 999), timestep
         alpha_prod_t = self.scheduler.alphas_cumprod[timestep] if timestep >= 0 else self.scheduler.final_alpha_cumprod
@@ -268,9 +269,18 @@ class DirectInversion:
         next_sample_direction = (1 - alpha_prod_t_next) ** 0.5 * model_output
         next_sample = alpha_prod_t_next ** 0.5 * next_original_sample + next_sample_direction
         return next_sample
-    
+
     def get_noise_pred_single(self, latents, t, context):
-        noise_pred = self.model.unet(latents, t, encoder_hidden_states=context)["sample"]
+        if isinstance(self.model, StableDiffusionXLPipeline):
+            # Dynamically slice added_cond_kwargs to match context batch size
+            batch_size = context.shape[0]
+            added_cond_kwargs_sliced = {
+                "text_embeds": self.added_cond_kwargs["text_embeds"][:batch_size],
+                "time_ids": self.added_cond_kwargs["time_ids"][:batch_size]
+            }
+            noise_pred = self.model.unet(latents, t, encoder_hidden_states=context, added_cond_kwargs=added_cond_kwargs_sliced)["sample"]
+        else:
+            noise_pred = self.model.unet(latents, t, encoder_hidden_states=context)["sample"]
         return noise_pred
 
     def get_noise_pred(self, latents, t, guidance_scale, is_forward=True, context=None):
@@ -278,7 +288,10 @@ class DirectInversion:
         if context is None:
             context = self.context
         guidance_scale = 1 if is_forward else guidance_scale
-        noise_pred = self.model.unet(latents_input, t, encoder_hidden_states=context)["sample"]
+        if isinstance(self.model, StableDiffusionXLPipeline):
+            noise_pred = self.model.unet(latents_input, t, encoder_hidden_states=context, added_cond_kwargs=self.added_cond_kwargs)["sample"]
+        else:
+            noise_pred = self.model.unet(latents_input, t, encoder_hidden_states=context)["sample"]
         noise_pred_uncond, noise_prediction_text = noise_pred.chunk(2)
         noise_pred = noise_pred_uncond + guidance_scale * (noise_prediction_text - noise_pred_uncond)
         if is_forward:
@@ -289,20 +302,62 @@ class DirectInversion:
 
     @torch.no_grad()
     def init_prompt(self, prompt: str):
-        uncond_input = self.model.tokenizer(
-            [""]*len(prompt), padding="max_length", max_length=self.model.tokenizer.model_max_length,
-            return_tensors="pt"
-        )
-        uncond_embeddings = self.model.text_encoder(uncond_input.input_ids.to(self.model.device))[0]
-        text_input = self.model.tokenizer(
-            prompt,
-            padding="max_length",
-            max_length=self.model.tokenizer.model_max_length,
-            truncation=True,
-            return_tensors="pt",
-        )
-        text_embeddings = self.model.text_encoder(text_input.input_ids.to(self.model.device))[0]
-        self.context = torch.cat([uncond_embeddings, text_embeddings])
+        if isinstance(self.model, StableDiffusionXLPipeline):
+            # SDXL: Use encode_prompt to handle dual text encoders
+            # prompt is a list like ["source prompt", "target prompt"]
+            all_prompt_embeds = []
+            all_pooled_embeds = []
+            for p in prompt:
+                embeds, _, pooled, _ = self.model.encode_prompt(
+                    prompt=p,
+                    prompt_2=None,
+                    device=self.model.device,
+                    num_images_per_prompt=1,
+                    do_classifier_free_guidance=False
+                )
+                all_prompt_embeds.append(embeds)
+                all_pooled_embeds.append(pooled)
+            text_embeddings = torch.cat(all_prompt_embeds, dim=0)
+            # IMPORTANT: Batch pooled embeddings for each prompt separately
+            pooled_prompt_embeds = torch.cat(all_pooled_embeds, dim=0)  # [len(prompt), 1280]
+
+            # Get unconditional embeddings and pooled embeddings (negative prompt = "")
+            _, uncond_embeddings, _, uncond_pooled = self.model.encode_prompt(
+                prompt=prompt[0],  # Use first prompt as reference
+                prompt_2=None,
+                device=self.model.device,
+                num_images_per_prompt=len(prompt),
+                do_classifier_free_guidance=True,
+                negative_prompt=""
+            )
+            self.context = torch.cat([uncond_embeddings, text_embeddings])
+
+            # Create added_cond_kwargs for SDXL with batched pooled embeddings
+            # Need to match the batching: [uncond1, uncond2, cond1, cond2]
+            pooled_embeds_batched = torch.cat([uncond_pooled, pooled_prompt_embeds], dim=0)  # [len(prompt)*2, 1280]
+            time_ids_batched = torch.tensor([[512, 512, 0, 0, 512, 512]] * (len(prompt) * 2), device=self.model.device, dtype=text_embeddings.dtype)  # [len(prompt)*2, 6]
+
+            self.added_cond_kwargs = {
+                "text_embeds": pooled_embeds_batched,
+                "time_ids": time_ids_batched
+            }
+        else:
+            # SD 1.4: Original implementation
+            uncond_input = self.model.tokenizer(
+                [""]*len(prompt), padding="max_length", max_length=self.model.tokenizer.model_max_length,
+                return_tensors="pt"
+            )
+            uncond_embeddings = self.model.text_encoder(uncond_input.input_ids.to(self.model.device))[0]
+            text_input = self.model.tokenizer(
+                prompt,
+                padding="max_length",
+                max_length=self.model.tokenizer.model_max_length,
+                truncation=True,
+                return_tensors="pt",
+            )
+            text_embeddings = self.model.text_encoder(text_input.input_ids.to(self.model.device))[0]
+            self.context = torch.cat([uncond_embeddings, text_embeddings])
+            self.added_cond_kwargs = None
         self.prompt = prompt
 
     @torch.no_grad()
@@ -430,12 +485,15 @@ class DirectInversion:
                 optimizer = Adam([uncond_embeddings], lr=1e-2 * (1. - i / 100.))
                 for j in range(num_inner_steps):
                     latents_input = torch.cat([latent_cur] * 2)
-                    noise_pred = self.model.unet(latents_input, t, encoder_hidden_states=torch.cat([uncond_embeddings, cond_embeddings]))["sample"]
+                    if isinstance(self.model, StableDiffusionXLPipeline):
+                        noise_pred = self.model.unet(latents_input, t, encoder_hidden_states=torch.cat([uncond_embeddings, cond_embeddings]), added_cond_kwargs=self.added_cond_kwargs)["sample"]
+                    else:
+                        noise_pred = self.model.unet(latents_input, t, encoder_hidden_states=torch.cat([uncond_embeddings, cond_embeddings]))["sample"]
                     noise_pred_uncond, noise_prediction_text = noise_pred.chunk(2)
                     noise_pred = noise_pred_uncond + guidance_scale * (noise_prediction_text - noise_pred_uncond)
-                    
+
                     latents_prev_rec = self.prev_step(noise_pred, t, latent_cur)[0]
-                    
+
                     loss = nnf.mse_loss(latents_prev_rec[[0]], latent_prev[[0]])
                     optimizer.zero_grad()
                     loss.backward()
@@ -527,13 +585,14 @@ class DirectInversion:
         
         noise_loss_list = self.offset_calculate_skip_step(ddim_latents, num_inner_steps, early_stop_epsilon,guidance_scale,skip_step)
         return image_gt, image_rec, ddim_latents, noise_loss_list
-    
-    
+
+
     def __init__(self, model,num_ddim_steps):
         self.model = model
         self.tokenizer = self.model.tokenizer
         self.prompt = None
         self.context = None
         self.num_ddim_steps=num_ddim_steps
+        self.added_cond_kwargs = None  # For SDXL pooled embeddings and micro-conditioning
         
        

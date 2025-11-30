@@ -4,7 +4,7 @@ from models.p2p.inversion import NegativePromptInversion, NullInversion, DirectI
 from models.p2p.attention_control import EmptyControl, AttentionStore, make_controller
 from models.p2p.p2p_guidance_forward import p2p_guidance_forward, direct_inversion_p2p_guidance_forward, direct_inversion_p2p_guidance_forward_add_target,p2p_guidance_forward_single_branch
 from models.p2p.proximal_guidance_forward import proximal_guidance_forward
-from diffusers import StableDiffusionPipeline
+from diffusers import StableDiffusionPipeline, StableDiffusionXLPipeline
 from utils.utils import load_512, latent2image, txt_draw
 from PIL import Image
 import numpy as np
@@ -12,11 +12,12 @@ import torch
 import pickle
 
 class P2PEditor:
-    def __init__(self, method_list, device, num_ddim_steps=50, distilled_checkpoint=None) -> None:
+    def __init__(self, method_list, device, num_ddim_steps=50, distilled_checkpoint=None, model_type="sd14", model_path=None) -> None:
         self.device=device
         self.method_list=method_list
         self.num_ddim_steps=num_ddim_steps
         self.distilled_checkpoint=distilled_checkpoint
+        self.model_type=model_type
 
         # init model
         self.scheduler = DDIMSchedulerDev(beta_start=0.00085,
@@ -24,14 +25,84 @@ class P2PEditor:
                                     beta_schedule="scaled_linear",
                                     clip_sample=False,
                                     set_alpha_to_one=False)
-        self.ldm_stable = StableDiffusionPipeline.from_pretrained(
-            "CompVis/stable-diffusion-v1-4", scheduler=self.scheduler).to(device)
+
+        # Initialize pipeline based on model type
+        if model_type == "sd14":
+            model_path = model_path or "CompVis/stable-diffusion-v1-4"
+            print(f"Loading SD 1.4 model from {model_path}")
+            self.ldm_stable = StableDiffusionPipeline.from_pretrained(
+                model_path, scheduler=self.scheduler).to(device)
+            self.sdxl_kwargs = {}
+        elif model_type == "sdxl":
+            model_path = model_path or "hotshotco/SDXL-512"
+            print(f"Loading SDXL model from {model_path}")
+            self.ldm_stable = StableDiffusionXLPipeline.from_pretrained(
+                model_path, scheduler=self.scheduler, use_safetensors=True).to(device)
+            # SDXL conditioning parameters for 512x512
+            self.sdxl_kwargs = {
+                "original_size": (512, 512),
+                "target_size": (512, 512),
+                "crops_coords_top_left": (0, 0)
+            }
+        else:
+            raise ValueError(f"Unknown model_type: {model_type}. Must be 'sd14' or 'sdxl'")
+
         self.ldm_stable.scheduler.set_timesteps(self.num_ddim_steps)
 
         # Load distilled checkpoint if provided
         if distilled_checkpoint is not None:
             print(f"Loading distilled checkpoint from {distilled_checkpoint}")
             self._load_distilled_unet(distilled_checkpoint)
+
+    def encode_prompt(self, prompt):
+        """Encode prompt for SD 1.4 or SDXL"""
+        if self.model_type == "sd14":
+            text_input = self.ldm_stable.tokenizer(
+                prompt,
+                padding="max_length",
+                max_length=self.ldm_stable.tokenizer.model_max_length,
+                truncation=True,
+                return_tensors="pt",
+            )
+            text_embeddings = self.ldm_stable.text_encoder(text_input.input_ids.to(self.device))[0]
+            return text_embeddings
+        elif self.model_type == "sdxl":
+            # SDXL uses dual text encoders
+            text_inputs = self.ldm_stable.tokenizer(
+                prompt,
+                padding="max_length",
+                max_length=self.ldm_stable.tokenizer.model_max_length,
+                truncation=True,
+                return_tensors="pt",
+            )
+            text_input_ids = text_inputs.input_ids
+
+            text_inputs_2 = self.ldm_stable.tokenizer_2(
+                prompt,
+                padding="max_length",
+                max_length=self.ldm_stable.tokenizer_2.model_max_length,
+                truncation=True,
+                return_tensors="pt",
+            )
+            text_input_ids_2 = text_inputs_2.input_ids
+
+            # Get embeddings from both encoders
+            prompt_embeds_list = []
+            prompt_embeds = self.ldm_stable.text_encoder(text_input_ids.to(self.device), output_hidden_states=True)
+            pooled_prompt_embeds = prompt_embeds[0]
+            prompt_embeds = prompt_embeds.hidden_states[-2]
+            prompt_embeds_list.append(prompt_embeds)
+
+            prompt_embeds_2 = self.ldm_stable.text_encoder_2(text_input_ids_2.to(self.device), output_hidden_states=True)
+            pooled_prompt_embeds_2 = prompt_embeds_2[0]
+            prompt_embeds_2 = prompt_embeds_2.hidden_states[-2]
+            prompt_embeds_list.append(prompt_embeds_2)
+
+            # Concatenate embeddings
+            prompt_embeds = torch.concat(prompt_embeds_list, dim=-1)
+            return prompt_embeds, pooled_prompt_embeds_2
+        else:
+            raise ValueError(f"Unknown model_type: {self.model_type}")
 
     def _load_distilled_unet(self, checkpoint_path):
         """Load distilled U-Net weights from SFD checkpoint"""
@@ -487,15 +558,16 @@ class P2PEditor:
         x_t = x_stars[-1]
 
         controller = AttentionStore()
-        
-        reconstruct_latent, x_t = direct_inversion_p2p_guidance_forward(model=self.ldm_stable, 
-                                       prompt=prompts, 
-                                       controller=controller, 
-                                       noise_loss_list=noise_loss_list, 
+
+        reconstruct_latent, x_t = direct_inversion_p2p_guidance_forward(model=self.ldm_stable,
+                                       prompt=prompts,
+                                       controller=controller,
+                                       noise_loss_list=noise_loss_list,
                                        latent=x_t,
-                                       num_inference_steps=self.num_ddim_steps, 
-                                       guidance_scale=guidance_scale, 
-                                       generator=None)
+                                       num_inference_steps=self.num_ddim_steps,
+                                       guidance_scale=guidance_scale,
+                                       generator=None,
+                                       sdxl_kwargs=self.sdxl_kwargs)
     
         
         reconstruct_image = latent2image(model=self.ldm_stable.vae, latents=reconstruct_latent)[0]

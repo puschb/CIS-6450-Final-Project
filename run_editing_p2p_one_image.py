@@ -43,12 +43,19 @@ if __name__ == "__main__":
     parser.add_argument('--blended_word', type=str, default="cake cake") # the editing category that needed to run
     parser.add_argument('--output_path', nargs = '+',type=str, default=["ddim+p2p.jpg"]) # the editing category that needed to run
     parser.add_argument('--edit_method_list', nargs = '+', type=str, default=["ddim+p2p"]) # the editing methods that needed to run
+    parser.add_argument('--model_type', type=str, default="sd14", choices=["sd14", "sdxl"]) # model type: sd14 or sdxl
+    parser.add_argument('--model_path', type=str, default=None) # custom model path
+    parser.add_argument('--num_ddim_steps', type=int, default=50) # number of DDIM steps
     args = parser.parse_args()
-    
+
     output_path=args.output_path
     edit_method_list=args.edit_method_list
+    model_type=args.model_type
+    model_path=args.model_path
+    num_ddim_steps=args.num_ddim_steps
 
-    p2p_editor=P2PEditor(edit_method_list, torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu') )
+    p2p_editor=P2PEditor(edit_method_list, torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu'),
+                         num_ddim_steps=num_ddim_steps, model_type=model_type, model_path=model_path)
     
     original_prompt = args.original_prompt
     editing_prompt = args.editing_prompt

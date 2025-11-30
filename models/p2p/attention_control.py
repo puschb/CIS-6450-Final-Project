@@ -17,7 +17,17 @@ def register_attention_control(model, controller):
         else:
             to_out = self.to_out
 
-        def forward(x, context=None, mask=None, **kwargs):
+        def forward(x, context=None, mask=None, encoder_hidden_states=None, **kwargs):
+            # Handle both SD 1.4 and SDXL calling conventions
+            # SD 1.4: forward(x, context=..., mask=...)
+            # SDXL: forward(hidden_states, encoder_hidden_states=..., attention_mask=...)
+
+            # For SDXL, encoder_hidden_states is passed as keyword arg
+            # For SD 1.4, context is passed as positional or keyword arg
+            if encoder_hidden_states is not None:
+                # SDXL calling convention
+                context = encoder_hidden_states
+
             if isinstance(context, dict):  # NOTE: compatible with ELITE (0.11.1)
                 context = context['CONTEXT_TENSOR']
             batch_size, sequence_length, dim = x.shape
@@ -27,9 +37,18 @@ def register_attention_control(model, controller):
             context = context if is_cross else x
             k = self.to_k(context)
             v = self.to_v(context)
-            q = self.reshape_heads_to_batch_dim(q)
-            k = self.reshape_heads_to_batch_dim(k)
-            v = self.reshape_heads_to_batch_dim(v)
+
+            # Handle both SD 1.4 and SDXL APIs
+            if hasattr(self, 'reshape_heads_to_batch_dim'):
+                # SD 1.4 API
+                q = self.reshape_heads_to_batch_dim(q)
+                k = self.reshape_heads_to_batch_dim(k)
+                v = self.reshape_heads_to_batch_dim(v)
+            else:
+                # SDXL API
+                q = self.head_to_batch_dim(q)
+                k = self.head_to_batch_dim(k)
+                v = self.head_to_batch_dim(v)
 
             sim = torch.einsum("b i d, b j d -> b i j", q, k) * self.scale
 
@@ -43,7 +62,14 @@ def register_attention_control(model, controller):
             attn = sim.softmax(dim=-1)
             attn = controller(attn, is_cross, place_in_unet)
             out = torch.einsum("b i j, b j d -> b i d", attn, v)
-            out = self.reshape_batch_dim_to_heads(out)
+
+            # Handle both SD 1.4 and SDXL APIs
+            if hasattr(self, 'reshape_batch_dim_to_heads'):
+                # SD 1.4 API
+                out = self.reshape_batch_dim_to_heads(out)
+            else:
+                # SDXL API
+                out = self.batch_to_head_dim(out)
             return to_out(out)
 
         return forward
@@ -60,7 +86,7 @@ def register_attention_control(model, controller):
         controller = DummyController()
 
     def register_recr(net_, count, place_in_unet):
-        if net_.__class__.__name__ == 'CrossAttention':
+        if net_.__class__.__name__ == 'CrossAttention' or net_.__class__.__name__ == 'Attention':
             net_.forward = ca_forward(net_, place_in_unet)
             return count + 1
         elif hasattr(net_, 'children'):

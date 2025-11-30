@@ -2,6 +2,7 @@ import torch
 
 from models.p2p.attention_control import register_attention_control
 from utils.utils import init_latent
+from diffusers import StableDiffusionXLPipeline
 
 def p2p_guidance_diffusion_step(model, controller, latents, context, t, guidance_scale, low_resource=False):
     if low_resource:
@@ -100,13 +101,20 @@ def p2p_guidance_forward_single_branch(
     return latents, latent
 
 
-def direct_inversion_p2p_guidance_diffusion_step(model, controller, latents, context, t, guidance_scale, noise_loss, low_resource=False,add_offset=True):
+def direct_inversion_p2p_guidance_diffusion_step(model, controller, latents, context, t, guidance_scale, noise_loss, low_resource=False,add_offset=True, added_cond_kwargs=None):
     if low_resource:
-        noise_pred_uncond = model.unet(latents, t, encoder_hidden_states=context[0])["sample"]
-        noise_prediction_text = model.unet(latents, t, encoder_hidden_states=context[1])["sample"]
+        if isinstance(model, StableDiffusionXLPipeline):
+            noise_pred_uncond = model.unet(latents, t, encoder_hidden_states=context[0], added_cond_kwargs=added_cond_kwargs)["sample"]
+            noise_prediction_text = model.unet(latents, t, encoder_hidden_states=context[1], added_cond_kwargs=added_cond_kwargs)["sample"]
+        else:
+            noise_pred_uncond = model.unet(latents, t, encoder_hidden_states=context[0])["sample"]
+            noise_prediction_text = model.unet(latents, t, encoder_hidden_states=context[1])["sample"]
     else:
         latents_input = torch.cat([latents] * 2)
-        noise_pred = model.unet(latents_input, t, encoder_hidden_states=context)["sample"]
+        if isinstance(model, StableDiffusionXLPipeline):
+            noise_pred = model.unet(latents_input, t, encoder_hidden_states=context, added_cond_kwargs=added_cond_kwargs)["sample"]
+        else:
+            noise_pred = model.unet(latents_input, t, encoder_hidden_states=context)["sample"]
         noise_pred_uncond, noise_prediction_text = noise_pred.chunk(2)
     noise_pred = noise_pred_uncond + guidance_scale * (noise_prediction_text - noise_pred_uncond)
     latents = model.scheduler.step(noise_pred, t, latents)["prev_sample"]
@@ -142,34 +150,75 @@ def direct_inversion_p2p_guidance_forward(
     guidance_scale = 7.5,
     generator = None,
     noise_loss_list = None,
-    add_offset=True
+    add_offset=True,
+    sdxl_kwargs=None
 ):
     batch_size = len(prompt)
     register_attention_control(model, controller)
     height = width = 512
-    
-    text_input = model.tokenizer(
-        prompt,
-        padding="max_length",
-        max_length=model.tokenizer.model_max_length,
-        truncation=True,
-        return_tensors="pt",
-    )
-    text_embeddings = model.text_encoder(text_input.input_ids.to(model.device))[0]
-    max_length = text_input.input_ids.shape[-1]
-    
-    uncond_input = model.tokenizer(
-        [""] * batch_size, padding="max_length", max_length=max_length, return_tensors="pt"
-    )
-    uncond_embeddings = model.text_encoder(uncond_input.input_ids.to(model.device))[0]
+
+    if isinstance(model, StableDiffusionXLPipeline):
+        # SDXL: Use encode_prompt to handle dual text encoders
+        all_prompt_embeds = []
+        all_pooled_embeds = []
+        for p in prompt:
+            embeds, _, pooled, _ = model.encode_prompt(
+                prompt=p,
+                prompt_2=None,
+                device=model.device,
+                num_images_per_prompt=1,
+                do_classifier_free_guidance=False
+            )
+            all_prompt_embeds.append(embeds)
+            all_pooled_embeds.append(pooled)
+        text_embeddings = torch.cat(all_prompt_embeds, dim=0)
+        # IMPORTANT: Batch pooled embeddings for each prompt separately
+        pooled_prompt_embeds = torch.cat(all_pooled_embeds, dim=0)  # [batch_size, 1280]
+
+        # Get unconditional embeddings and pooled embeddings
+        _, uncond_embeddings, _, uncond_pooled = model.encode_prompt(
+            prompt=prompt[0],
+            prompt_2=None,
+            device=model.device,
+            num_images_per_prompt=batch_size,
+            do_classifier_free_guidance=True,
+            negative_prompt=""
+        )
+
+        # Create added_cond_kwargs for SDXL with batched pooled embeddings
+        # Need to match the batching: [uncond, uncond, cond1, cond2]
+        pooled_embeds_batched = torch.cat([uncond_pooled, pooled_prompt_embeds], dim=0)  # [batch_size*2, 1280]
+        time_ids_batched = torch.tensor([[512, 512, 0, 0, 512, 512]] * (batch_size * 2), device=model.device, dtype=text_embeddings.dtype)  # [batch_size*2, 6]
+
+        added_cond_kwargs = {
+            "text_embeds": pooled_embeds_batched,
+            "time_ids": time_ids_batched
+        }
+    else:
+        # SD 1.4: Original implementation
+        text_input = model.tokenizer(
+            prompt,
+            padding="max_length",
+            max_length=model.tokenizer.model_max_length,
+            truncation=True,
+            return_tensors="pt",
+        )
+        text_embeddings = model.text_encoder(text_input.input_ids.to(model.device))[0]
+        max_length = text_input.input_ids.shape[-1]
+
+        uncond_input = model.tokenizer(
+            [""] * batch_size, padding="max_length", max_length=max_length, return_tensors="pt"
+        )
+        uncond_embeddings = model.text_encoder(uncond_input.input_ids.to(model.device))[0]
+        added_cond_kwargs = None
 
     latent, latents = init_latent(latent, model, height, width, generator, batch_size)
     model.scheduler.set_timesteps(num_inference_steps)
     for i, t in enumerate(model.scheduler.timesteps):
-        
+
         context = torch.cat([uncond_embeddings, text_embeddings])
-        latents = direct_inversion_p2p_guidance_diffusion_step(model, controller, latents, context, t, guidance_scale, noise_loss_list[i],low_resource=False,add_offset=add_offset)
-        
+        latents = direct_inversion_p2p_guidance_diffusion_step(model, controller, latents, context, t, guidance_scale, noise_loss_list[i],low_resource=False,add_offset=add_offset, added_cond_kwargs=added_cond_kwargs)
+
     return latents, latent
 
 @torch.no_grad()

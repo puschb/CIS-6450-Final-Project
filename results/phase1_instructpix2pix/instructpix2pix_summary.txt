@@ -1,0 +1,18 @@
+InstructPix2Pix Baseline Evaluation Results
+==================================================
+
+Total Images Processed: 700
+
+Metrics Summary:
+--------------------------------------------------
+SSIM (Structural Similarity):
+  Mean: 0.7679
+  Std:  0.1656
+
+LPIPS (Perceptual Distance):
+  Mean: 0.1592
+  Std:  0.1532
+
+CLIP Similarity (Semantic Alignment):
+  Mean: 23.8009
+  Std:  4.6822

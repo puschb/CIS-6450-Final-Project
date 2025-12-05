@@ -1,0 +1,47 @@
+# LCM-LoRA Experiment
+
+Accelerate InstructDiffusion from 50 steps to 4 steps using LCM-LoRA.
+
+## Scripts to Run
+
+### 1. Grid Search
+Test different parameter combinations:
+```bash
+python run_instruct_lcm_grid_search.py \
+  --output_path output/grid_search \
+  --num_images 700 \
+  --steps 4
+```
+
+### 2. Evaluate Results
+Calculate metrics for each parameter combination:
+```bash
+python evaluate_grid_search.py \
+  --grid_search_path output/grid_search
+```
+
+### 3. Summarize Results
+Generate summary statistics:
+```bash
+python summarize_grid_search.py \
+  --grid_search_path output/grid_search \
+  --output_csv output/grid_search/summary.csv
+```
+
+### 4. Compare to Baseline (Optional)
+Compare best LCM config to standard InstructDiffusion:
+```bash
+python compare_lcm_to_baseline.py \
+  --grid_search_path output/grid_search \
+  --lcm_guidance 1.6 \
+  --lcm_image_guidance 1.1
+```
+
+## Single Image Testing (Optional)
+Test on one image:
+```bash
+python run_instruct_lcm_single_image.py \
+  --image_path your_image.jpg \
+  --prompt "your editing instruction" \
+  --output_path output.jpg
+```
